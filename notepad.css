@@ -10,7 +10,16 @@ body {
 	margin: 5%;
 	height: 20%;
 }
-
+#plus {
+	width: 55px;
+	height: 50px;
+	font-size: 18px;
+	font-weight: bold;
+	float: right;
+}
+#plus:hover {
+	background-color: #ffebcd;
+}
 .note {
 	padding: 50px;
 	background-color: white;

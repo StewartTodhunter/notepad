@@ -32,3 +32,12 @@ function endOverlay() {
 	document.getElementById("notes").parentNode.removeChild(dialogue);
 }
 	
+function newButton(){
+	var note = document.createElement("Button");
+	var txt = document.createTextNode("new note");
+	note.setAttribute("id","new");
+	note.setAttribute("onclick", "newNote()");
+	note.setAttribute("type", "submit");
+	note.appendChild(txt);
+	document.body.appendChild(note);
+}
