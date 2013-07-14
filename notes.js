@@ -23,7 +23,6 @@ function applyNote(name, text) {
 }
 
 function endDialogue() {
-	document.body.removeChild(document.getElementById("overlay"));
 	document.body.removeChild(document.getElementById("dialogue"));
 }
 
