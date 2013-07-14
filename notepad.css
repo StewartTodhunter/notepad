@@ -16,16 +16,6 @@ body {
 	margin: 5%;
 	height: 20%;
 }
-#plus {
-	width: 55px;
-	height: 50px;
-	font-size: 18px;
-	font-weight: bold;
-	float: right;
-}
-#plus:hover {
-	background-color: #ffebcd;
-}
 
 .note {
 	padding: 10px;
@@ -39,16 +29,6 @@ body {
 	width: 20%;
 }
 
-#overlay {
-
-   background-color: #000;
-   opacity: .7;
-   filter: alpha(opacity=70);
-   position: absolute; top: 0; left: 0;
-   width: 100%; height: 100%;
-   z-index: 10;
-}
-
 #dialogue {
 	width: 80%;
 	height: 60%;
@@ -57,7 +37,6 @@ body {
 	z-index: 20;
 	background-color: white;
 }
-
 
 #inputForm {
 
