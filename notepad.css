@@ -33,6 +33,7 @@ body {
 	word-wrap: break-word;
 	overflow: auto;
 	padding: 1%;
+	position: relative;
 	background-color: white;
 	border-style: inset;
 	border-color: #66CCFF;
