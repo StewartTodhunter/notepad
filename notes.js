@@ -2,6 +2,10 @@ function getFocus() {
 	document.getElementById('noteTitle').focus()
 }
 
+function removeNote(thisNote) {
+	thisNote.parentNode.removeChild(thisNote);
+}
+
 function newNote() {
 
 	var dialogue = document.createElement("div");
@@ -23,8 +27,14 @@ function applyNote(title, text){
 	var note = document.createElement("div");
 	var header = document.createElement("H3");
 	var body = document.createTextNode(text);
+	var deleteNote = document.createElement("input");
 	
 	header.innerHTML = title;
+	
+	deleteNote.setAttribute("id","deleteButton");
+	deleteNote.setAttribute("type","Button");
+	deleteNote.setAttribute("value","x");
+	deleteNote.setAttribute("onclick","removeNote(this.parentNode)");
 	
 	note.className = "note";	
 	note.setAttribute("id","eachNote");
@@ -32,6 +42,7 @@ function applyNote(title, text){
 	note.setAttribute("type", "submit");
 	note.appendChild(header);
 	note.appendChild(body);
+	note.appendChild(deleteNote);
 	document.getElementById("notes").appendChild(note);
 }
 // Create Database if not existing or load existing
