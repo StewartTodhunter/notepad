@@ -24,10 +24,10 @@ function applyNote(title, text){
 	
 	header.innerHTML = title;
 	//body.innerHTML = text;	
-	body.className = "noteText";
+	//body.className = "noteText";
 	
 	note.className = "note";	
-	note.setAttribute("id","new");
+	note.setAttribute("id","eachNote");
 	note.setAttribute("onclick", "newNote()");
 	note.setAttribute("type", "submit");
 	note.appendChild(header);
