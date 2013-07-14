@@ -16,6 +16,7 @@ body {
 	font-size: 1em;
 	margin: 5%;
 	border-style: inset;
+	border-color: #66CCFF;
 	border-radius: .3em;
 	float: left;
 }
