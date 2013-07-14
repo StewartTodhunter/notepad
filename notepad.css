@@ -1,6 +1,7 @@
 @import url(http://fonts.googleapis.com/css?family=Kite+One);
 
 h3 {
+	font-family: sans-serif;
 	margin: 0px;
 }
 
@@ -14,6 +15,8 @@ body {
 	font-family: 'Kite One', sans-serif;
 	font-size: 1em;
 	margin: 5%;
+	border-style: inset;
+	border-radius: .3em;
 	float: left;
 }
 
