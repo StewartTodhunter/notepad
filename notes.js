@@ -34,3 +34,45 @@ function applyNote(title, text){
 	note.appendChild(body);
 	document.getElementById("notes").appendChild(note);
 }
+// Create Database if not existing or load existing
+var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+var msg;
+//var devNote={Title:"test title",Body:"test body",CreateDate:"1st July"};
+function writeNoteToDb()
+{
+  db.transaction(function (tx) {
+  tx.executeSql('DROP TABLE ourNotes');
+  });
+db.transaction(function (tx) {
+  tx.executeSql('CREATE TABLE IF NOT EXISTS ourNotes (id unique, log)');
+  });
+
+ db.transaction(function (tx) { 
+  tx.executeSql('INSERT INTO ourNotes (id, log) VALUES (1, "foo5bar")');
+  tx.executeSql('INSERT INTO ourNotes (id, log) VALUES (2, "logmsg")');
+  msg = '<p>Log message created and row inserted.</p>';
+  document.querySelector('#status').innerHTML =  msg;
+});
+
+
+db.transaction(function (tx) {
+  tx.executeSql('SELECT * FROM ourNotes', [], function (tx, results) {
+   var len = results.rows.length, i;
+   msg = "<p>Found rows: " + len + "</p>";
+   document.querySelector('#status').innerHTML +=  msg;
+   for (i = 0; i < len; i++){
+     msg = "<p><b>" + results.rows.item(i).log + "</b></p>";
+     document.querySelector('#status').innerHTML +=  msg;
+   }
+ }, null);
+});
+
+}
+
+
+
+function readNoteFromDb()
+{
+
+
+}
