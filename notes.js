@@ -1,13 +1,15 @@
+function getFocus() {
+	document.getElementById('noteTitle').focus()
+}
+
 function newNote() {
 
 	var dialogue = document.createElement("div");
 
 	dialogue.setAttribute("id","dialogue");
-	//dialogue.setAttribute("class", "dialogue");
-
 	dialogue.innerHTML = "<form id=\"inputForm\" onSubmit=\"return false\">Title:<input id=\"noteTitle\" type=\"text\"></input><br/><textarea id=\"inputArea\" rows=\"20\"></textarea><br/><input type=\"submit\" value=\"submit\" onclick=\"applyNote(noteTitle.value, inputArea.value)\"><input type=\"submit\" value=\"cancel\" onclick=\"endDialogue()\"></form>";
-
-	document.body.appendChild(dialogue);	
+	document.body.appendChild(dialogue);
+	getFocus();
 }
 
 function endDialogue() {
@@ -23,11 +25,9 @@ function applyNote(title, text){
 	var body = document.createTextNode(text);
 	
 	header.innerHTML = title;
-	//body.innerHTML = text;	
-	body.className = "noteText";
 	
 	note.className = "note";	
-	note.setAttribute("id","new");
+	note.setAttribute("id","eachNote");
 	note.setAttribute("onclick", "newNote()");
 	note.setAttribute("type", "submit");
 	note.appendChild(header);

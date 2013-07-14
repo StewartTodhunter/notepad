@@ -1,20 +1,11 @@
 @import url(http://fonts.googleapis.com/css?family=Kite+One);
 
 h3 {
-	margin: 0px;
+	font-family: sans-serif;
 }
 
 body {
 	background-color: black;
-}
-
-#new {
-	width: 80%;
-	height: 20%;
-	font-family: 'Kite One', sans-serif;
-	font-size: 1em;
-	margin: 5%;
-	float: left;
 }
 
 #clickToCreateNewNote {
@@ -34,16 +25,21 @@ body {
 	background:-moz-linear-gradient( center top, #66CCFF 5%, #D8F2FF 100% );
 }
 
-.note {
-	padding: 10px;
-	padding-top: 0px;
-	background-color: white;
-	float: left;
-	margin: 20px;
-	overflow: auto;
-	font-size: 0.2em;
+#eachNote {
+	width: 85%;
+	height: 20%;
+	font-family: 'Kite One', sans-serif;
+	font-size: 1em;
 	word-wrap: break-word;
-	width: 20%;
+	overflow: auto;
+	padding: 1%;
+	background-color: white;
+	border-style: inset;
+	border-color: #66CCFF;
+	border-radius: .2em;
+	margin: 1%;
+	float: left;
+	
 }
 
 #dialogue {
@@ -53,10 +49,13 @@ body {
 	position: absolute; top: 10%; left: 10%;
 	z-index: 20;
 	background-color: white;
+	border: 1px solid black;
+	border-radius: .2em;
 }
 
 #inputForm {
-
+	width: 95%;
+	padding: 1%;
 }
 
 #inputArea {
