@@ -5,13 +5,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="notepad.css">
 	</head>
-	<body>
-		<!--<input id="plus" value="+" type="submit" onclick="newButton()"/>-->
+	<body onload="initialise()">
 		<input id="clickToCreateNewNote" value="+" type="submit" onclick="newNote()"/>
 		<div id="notes">				
 		</div>
 		<script src="notes.js"></script>
 		<script src="libs/modernizr.js"></script>
 		<script src="libs/jquery-1.10.1.min.js"></script>
+		<p>
+			<button  type="button" onclick="writeNoteToDb()" >Test Write DB</button>
+			<button  type="button" onclick="readNoteFromDb()" >Test Read DB</button><br />
+			<div id="status" name="status">Status Message
+			</div>
+		</p>
+		
 	</body>
 </html>
