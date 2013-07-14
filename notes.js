@@ -120,5 +120,45 @@ function testReadDb()
 			}
 		}, null);
 	});
+}
 
+function loadNotes()
+{
+	db.transaction(function (tx) 
+	{
+		tx.executeSql('SELECT * FROM ourNotes', [], function (tx, results) 
+		{
+			var len = results.rows.length, i;
+			//msg = "<p>Found rows: " + len + "</p>";
+			//document.querySelector('#status').innerHTML +=  msg;
+			for (i = 0; i < len; i++)
+			{
+			newNote();
+				var newTitle = results.rows.item(i).Title;
+				var newText = results.rows.item(i).Body;
+				//document.querySelector('#status').innerHTML +=  msg;
+				applyNoteOnLoad(newTitle, newText);
+			}
+		}, null);
+	});
+}
+function applyNoteOnLoad(title, text){
+
+	endDialogue();
+	
+	var note = document.createElement("div");
+	var header = document.createElement("H3");
+	var body = document.createTextNode(text);
+	
+	header.innerHTML = title;
+	//body.innerHTML = text;	
+	body.className = "noteText";
+	
+	note.className = "note";	
+	note.setAttribute("id","new");
+	note.setAttribute("onclick", "newNote()");
+	note.setAttribute("type", "submit");
+	note.appendChild(header);
+	note.appendChild(body);
+	document.getElementById("notes").appendChild(note);
 }
