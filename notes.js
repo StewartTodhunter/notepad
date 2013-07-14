@@ -10,18 +10,6 @@ function newNote() {
 	document.body.appendChild(dialogue);	
 }
 
-function applyNote(name, text) {
-
-	endDialogue();
-
-	var noteArea = document.getElementById("notes");
-	var listItem = document.createElement("div");
-
-	listItem.className = "note";
-	listItem.innerHTML = name + "<br />" + text;
-	noteArea.insertBefore(listItem, noteArea.firstChild);
-}
-
 function endDialogue() {
 	document.body.removeChild(document.getElementById("dialogue"));
 }
