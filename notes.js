@@ -33,45 +33,92 @@ function applyNote(title, text){
 	note.appendChild(header);
 	note.appendChild(body);
 	document.getElementById("notes").appendChild(note);
+	writeDb( title, text);
 }
 
 var db = openDatabase('notesDb', '1.0', 'Test DB', 2 * 1024 * 1024);
 var msg;
-var devNote = {Title:"dev title1",Body:"dev body",CreateDate:"1 July",ModDate:"2 Dec"}
+var devNote = {Title:"dev title3",Body:"dev body",CreateDate:"1 July",ModDate:"2 Dec"}
+
+function writeDb(Title,Body)
+{
+	db.transaction(function (tx) 
+	{
+		tx.executeSql('CREATE TABLE IF NOT EXISTS ourNotes (id unique, Title, Body, CreateDate, ModDate)');
+	});
+	
+	// Can't insert a row that already exists so find the number of rows and increase id by 1.
+	var newId;
+	db.transaction(function (tx) 
+	{
+		tx.executeSql('SELECT * FROM ourNotes', [], function (tx, results) 
+			{
+			var len = results.rows.length, i;
+			newId = len + 1;
+			}, null);
+	});
+
+
+	db.transaction(function (tx) 
+	{
+		var tempTitle = Title;
+		var tempBody = Body;
+		var tempCreateDate = "t1";
+		var tempModDate = "t2";
+		//var tempCreateDate = devNote.CreateDate;
+		//var tempModDate = devNote.ModDate;
+		tx.executeSql('INSERT INTO ourNotes (id, Title, Body, CreateDate, ModDate) VALUES (?, ?, ?, ?, ?)', [newId, tempTitle, tempBody, tempCreateDate, tempModDate]);
+		msg = '<p>Log message created and row inserted.</p>';
+		document.querySelector('#status').innerHTML =  msg;
+	});
+}
+
 function testWriteDb()
 {
+	db.transaction(function (tx) 
+	{
+		tx.executeSql('CREATE TABLE IF NOT EXISTS ourNotes (id unique, Title, Body, CreateDate, ModDate)');
+	});
+	
+	// Can't insert a row that already exists so find the number of rows and increase id by 1.
+	var newId;
+	db.transaction(function (tx) 
+	{
+		tx.executeSql('SELECT * FROM ourNotes', [], function (tx, results) 
+			{
+			var len = results.rows.length, i;
+			newId = len + 1;
+			}, null);
+	});
 
-db.transaction(function (tx) {
-  tx.executeSql('DROP TABLE ourNotes');
-});
-
-db.transaction(function (tx) {
-  var tempTitle = devNote.Title;
-  var tempBody = devNote.Body;
-  var tempCreateDate = devNote.CreateDate;
-  var tempModDate = devNote.ModDate;
-  //alert(tempCreateDate);
-  tx.executeSql('CREATE TABLE IF NOT EXISTS ourNotes (id unique, Title, Body, CreateDate, ModDate)');
-  //tx.executeSql('INSERT INTO ourNotes (id, Title, Body, CreateDate, ModDate) VALUES (1, "tempTitle")');
-  tx.executeSql('INSERT INTO ourNotes (id, Title, Body, CreateDate, ModDate) VALUES (?, ?, ?, ?, ?)', [1, tempTitle, tempBody, tempCreateDate, tempModDate]);
-  //tx.executeSql('INSERT INTO ourNotes (id, log) VALUES (2, "logmsg")');
-  msg = '<p>Log message created and row inserted.</p>';
-  document.querySelector('#status').innerHTML =  msg;
-});
+	db.transaction(function (tx) 
+	{
+		var tempTitle = devNote.Title;
+		var tempBody = devNote.Body;
+		var tempCreateDate = devNote.CreateDate;
+		var tempModDate = devNote.ModDate;
+		tx.executeSql('CREATE TABLE IF NOT EXISTS ourNotes (id unique, Title, Body, CreateDate, ModDate)');
+		tx.executeSql('INSERT INTO ourNotes (id, Title, Body, CreateDate, ModDate) VALUES (?, ?, ?, ?, ?)', [newId, tempTitle, tempBody, tempCreateDate, tempModDate]);
+		msg = '<p>Log message created and row inserted.</p>';
+		document.querySelector('#status').innerHTML =  msg;
+	});
 }
 
 function testReadDb()
 {
-db.transaction(function (tx) {
-  tx.executeSql('SELECT * FROM ourNotes', [], function (tx, results) {
-   var len = results.rows.length, i;
-   msg = "<p>Found rows: " + len + "</p>";
-   document.querySelector('#status').innerHTML +=  msg;
-   for (i = 0; i < len; i++){
-     msg = "<p><b>" + results.rows.item(i).Title + " " + results.rows.item(i).Body + " " + results.rows.item(i).CreateDate + " " + results.rows.item(i).ModDate + "</b> </p>";
-     document.querySelector('#status').innerHTML +=  msg;
-   }
- }, null);
-});
+	db.transaction(function (tx) 
+	{
+		tx.executeSql('SELECT * FROM ourNotes', [], function (tx, results) 
+		{
+			var len = results.rows.length, i;
+			msg = "<p>Found rows: " + len + "</p>";
+			document.querySelector('#status').innerHTML +=  msg;
+			for (i = 0; i < len; i++)
+			{
+				msg = "<p><b>" + results.rows.item(i).Title + " " + results.rows.item(i).Body + " " + results.rows.item(i).CreateDate + " " + results.rows.item(i).ModDate + "</b> </p>";
+				document.querySelector('#status').innerHTML +=  msg;
+			}
+		}, null);
+	});
 
 }
