@@ -38,10 +38,13 @@ body {
 	border-color: #66CCFF;
 	border-radius: .2em;
 	margin: 1%;
-	float: left;
-	
+	float: left;	
 }
 
+#deleteButton {
+	position: absolute; top: 3px; right: 3px;
+	font-weight: bold;
+}
 #dialogue {
 	width: 80%;
 	height: 60%;
