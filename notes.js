@@ -10,7 +10,6 @@ function removeNote(thisNote) {
 function newNote() {
 
 	var dialogue = document.createElement("div");
-
 	dialogue.setAttribute("id","dialogue");
 	dialogue.innerHTML = "<form id=\"inputForm\" onSubmit=\"return false\">Title:<input id=\"noteTitle\" type=\"text\"></input><br/><textarea id=\"inputArea\" rows=\"20\"></textarea><br/><input type=\"submit\" value=\"submit\" onclick=\"applyNote(noteTitle.value, inputArea.value)\"><input type=\"submit\" value=\"cancel\" onclick=\"endDialogue()\"></form>";
 	document.body.appendChild(dialogue);
