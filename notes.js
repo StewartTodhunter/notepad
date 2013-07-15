@@ -1,13 +1,20 @@
+function getFocus() {
+	document.getElementById("noteTitle").focus()
+}
+
+function removeNote(thisNote) {
+	thisNote.parentNode.removeChild(thisNote);
+	deleteNote();
+}
+
 function newNote() {
 
 	var dialogue = document.createElement("div");
 
 	dialogue.setAttribute("id","dialogue");
-	//dialogue.setAttribute("class", "dialogue");
-
 	dialogue.innerHTML = "<form id=\"inputForm\" onSubmit=\"return false\">Title:<input id=\"noteTitle\" type=\"text\"></input><br/><textarea id=\"inputArea\" rows=\"20\"></textarea><br/><input type=\"submit\" value=\"submit\" onclick=\"applyNote(noteTitle.value, inputArea.value)\"><input type=\"submit\" value=\"cancel\" onclick=\"endDialogue()\"></form>";
-
-	document.body.appendChild(dialogue);	
+	document.body.appendChild(dialogue);
+	getFocus();
 }
 
 function endDialogue() {
@@ -21,17 +28,17 @@ function applyNote(title, text){
 	var note = document.createElement("div");
 	var header = document.createElement("H3");
 	var body = document.createTextNode(text);
+	var deleteNote = document.createElement("input");
 	
-	header.innerHTML = title;
-	//body.innerHTML = text;	
-	body.className = "noteText";
+	header.innerHTML = title;	
 	
 	note.className = "note";	
-	note.setAttribute("id","new");
+	note.setAttribute("id","eachNote");
 	note.setAttribute("onclick", "newNote()");
 	note.setAttribute("type", "submit");
 	note.appendChild(header);
 	note.appendChild(body);
+	note.appendChild(deleteNote);
 	document.getElementById("notes").appendChild(note);
 	writeDb( title, text);
 }
