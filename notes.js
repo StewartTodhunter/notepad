@@ -29,6 +29,10 @@ function applyNote(title, text){
 	var header = document.createElement("H3");
 	var body = document.createTextNode(text);
 	var deleteNote = document.createElement("input");
+	var modDateElement = document.createElement("p");
+	var timestamp = getTimestamp();
+	var modDateText = document.createTextNode("Created: " + timestamp.toLocaleString() + " Modified: " + timestamp.toLocaleString());
+
 	
 	header.innerHTML = title;	
 	
@@ -38,6 +42,8 @@ function applyNote(title, text){
 	note.setAttribute("type", "submit");
 	note.appendChild(header);
 	note.appendChild(body);
+	note.appendChild(modDateElement);
+	note.appendChild(modDateText);
 	note.appendChild(deleteNote);
 	document.getElementById("notes").appendChild(note);
 	writeDb( title, text);
@@ -87,16 +93,20 @@ function testWriteDb()
 		tx.executeSql('CREATE TABLE IF NOT EXISTS ourNotes (id unique, Title, Body, CreateDate, ModDate)');
 	});
 	
+
 	// Can't insert a row that already exists so find the number of rows and increase id by 1.
+	// Problem occurs if we have deleted a row. Then we index of the last row is higher than the length already. Can't insert.
 	var newId;
 	db.transaction(function (tx) 
 	{
-		tx.executeSql('SELECT * FROM ourNotes', [], function (tx, results) 
+		tx.executeSql('SELECT id FROM ourNotes', [], function (tx, results) 
 			{
 			var len = results.rows.length, i;
 			newId = len + 1;
+			alert(newId);
 			}, null);
 	});
+
 
 	db.transaction(function (tx) 
 	{
@@ -177,7 +187,7 @@ function deleteNote()
 	// Delete that row from database
 		db.transaction(function (tx) 
 	{
-		//tx.executeSql('DELETE FROM ourNotes WHERE id = ?', [1], success, error);
+		// Change [1] to reflect the database id of the note to be deleted.
 		tx.executeSql('DELETE FROM ourNotes WHERE id = ?', [1]);
 	});
 	// Delete the html for that note
@@ -186,11 +196,8 @@ function deleteNote()
 
 function getTimestamp()
 {
-    var timestamp;
-	// this._timestamp = x;
-    // var date = new Date();
-	timestamp = new Date().getTime();
-    //date.setTime(parseFloat(x));
-	alert(timestamp);
-    //this.lastModified.textContent = modifiedString(date);
+	var timestamp = new Date();
+ 	//var timestampFormatted = timestamp.toLocaleString();
+	//var timestampSeconds = timestamp.getTime();
+	return timestamp;
 }
