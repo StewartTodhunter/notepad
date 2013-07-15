@@ -162,3 +162,28 @@ function applyNoteOnLoad(title, text){
 	note.appendChild(body);
 	document.getElementById("notes").appendChild(note);
 }
+
+function deleteNote()
+{	
+	// Get id or title from note to be deleted
+
+	// Delete that row from database
+		db.transaction(function (tx) 
+	{
+		//tx.executeSql('DELETE FROM ourNotes WHERE id = ?', [1], success, error);
+		tx.executeSql('DELETE FROM ourNotes WHERE id = ?', [1]);
+	});
+	// Delete the html for that note
+	alert("b");
+}
+
+function getTimestamp()
+{
+    var timestamp;
+	// this._timestamp = x;
+    // var date = new Date();
+	timestamp = new Date().getTime();
+    //date.setTime(parseFloat(x));
+	alert(timestamp);
+    //this.lastModified.textContent = modifiedString(date);
+}
