@@ -109,14 +109,8 @@ function ReadDb(id)
 
 function notesLoad() {
 	var localStorageKeys = Object.keys(localStorage);
-	if(localStorageKeys)
-	{
-		for (var i=1; i < localStorageKeys.length; i++)  {
+	for (var i=1; i < localStorageKeys.length; i++)  {
 			alert(localStorage.getItem(localStorageKeys[i]));
-		}
 	}
-	else
-	{
-		alert("Please create a note, you don't have one stored now.");
-	}
+	
 }	
