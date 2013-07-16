@@ -26,7 +26,8 @@ body {
 	border-radius: .3em;
 	-webkit-box-shadow:1px 1px 1px 1px #003366;
 	box-shadow:1px 1px 1px 1px #003366;
-	float: right;
+	/*float: right;*/
+	margin: auto;
 }
 
 #clickToCreateNewNote:hover {
