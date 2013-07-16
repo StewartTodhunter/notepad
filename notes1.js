@@ -1,4 +1,3 @@
-
 function getFocus() {
 	document.getElementById("noteTitle").focus()
 }
@@ -18,14 +17,14 @@ function newNote(id) {
 	var dialogue = document.createElement("div");
 	dialogue.setAttribute("id","dialogue");
 	if (id=="new") {
-		dialogue.innerHTML = "<form id=\"inputForm\" onSubmit=\"return false\">Title:<input id=\"noteTitle\" type=\"text\"></input><br/><textarea id=\"inputArea\" rows=\"20\"></textarea><br/><input type=\"submit\" value=\"submit\" onclick=\"applyNote(noteTitle.value, inputArea.value)\"><input type=\"submit\" value=\"cancel\" onclick=\"endDialogue()\"></form>";
+		dialogue.innerHTML = "<form id=\"inputForm\" onSubmit=\"return false\">Title:<input id=\"noteTitle\" type=\"text\"></input><br/><textarea id=\"inputArea\" ></textarea><br/><input class=\"dialogueButtons\" type=\"submit\" value=\"submit\" onclick=\"applyNote(noteTitle.value, inputArea.value)\"><input class=\"dialogueButtons\" type=\"submit\" value=\"cancel\" onclick=\"endDialogue()\"></form>";
 	}
 	else
 	{
 		var noteCont = new Array();
 		noteCont = ReadDb(id);
 		//alert(noteCont[0]);
-		dialogue.innerHTML = "<form id=\"inputForm\" onSubmit=\"return false\">Title:<input id=\"noteTitle\" value=noteCont[0] type=\"text\"></input><br/><textarea id=\"inputArea\" rows=\"20\" value=noteCont[1]></textarea><br/><input type=\"submit\" value=\"submit\" onclick=\"applyNote(noteTitle.value, inputArea.value)\"><input type=\"submit\" value=\"cancel\" onclick=\"endDialogue()\"></form>";
+		dialogue.innerHTML = "<form id=\"inputForm\" onSubmit=\"return false\">Title:<input id=\"noteTitle\" value=noteCont[0] type=\"text\"></input><br/><textarea id=\"inputArea\" value=noteCont[1]></textarea><br/><input class=\"dialogueButtons\" type=\"submit\" value=\"submit\" onclick=\"applyNote(noteTitle.value, inputArea.value)\"><input class=\"dialogueButtons\" type=\"submit\" value=\"cancel\" onclick=\"endDialogue()\"></form>";
 	}
 	document.body.appendChild(dialogue);
 	getFocus();
