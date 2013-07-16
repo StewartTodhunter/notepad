@@ -4,12 +4,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="notepad.css">
 	</head>
-	<body>
-		<input id="clickToCreateNewNote" value="Add Note" type="submit" onclick="addNote()"/>
-		<div id="notes">				
-		</div>		
+	<body onload="notesLoad()">
+		<input id="clickToCreateNewNote" value="Add Note" type="submit" onclick="newNote(this.id)"/>
+		<div id="notes"></div>
 		<script src="notes1.js"></script>
-		<script src="libs/modernizr.js"></script>
-		<script src="libs/jquery-1.10.1.min.js"></script>
 	</body>
 </html>
