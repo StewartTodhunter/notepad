@@ -110,7 +110,7 @@ function ReadDb(id)
 function notesLoad() {
 	var localStorageKeys = Object.keys(localStorage);
 	for (var i=1; i < localStorageKeys.length; i++)  {
-			alert(localStorage.getItem(localStorageKeys[i]));
+			alert(JSON.parse(localStorage.getItem(localStorageKeys[i])));
 	}
 	
 }	
