@@ -73,27 +73,28 @@ function applyNote(title, text){
 	var note = document.createElement("Button");
 	var txt = document.createTextNode(title + " " + ModDate);
 	var element = document.getElementById("notes");
+	var isNew = "yes";
 	note.setAttribute("id",title);
 	note.setAttribute("onclick", "newNote(this.id)");
 	note.setAttribute("type", "submit");
 	note.appendChild(txt);
-	//document.body.appendChild(note);
 	element.insertBefore(note,element.firstChild);
-	writeDb(title, text, ModDate);
+	writeDb(title, text, ModDate, isNew);
 }
 
 function modifyNote(title, text){
 	endDialogue();
 	var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
-	writeDb(title, text, ModDate);
+	var isNew = "no";
+	writeDb(title, text, ModDate, isNew);
 }
 
-function writeDb(Title,Body, NTime)
+function writeDb(Title,Body, NTime, isNewNote)
 {
 	var notes = {};
 	notes.title = Title;
 	notes.body = Body;
-	if (!JSON.parse( localStorage.getItem(Title) )) {
+	if (isNewNote="yes") {
 		notes.createdDate = new Date().toString('dd-mm-yyyy h:mm:ss');
 	}
 	notes.modifiedDate = NTime;
