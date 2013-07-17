@@ -70,23 +70,27 @@ function noteRemove(title) {
 function applyNote(title, text){
 	endDialogue();
 	var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
-	var note = document.createElement("Button");
-	var txt = document.createTextNode(title + " " + ModDate);
-	var element = document.getElementById("notes");
-	var isNew = "yes";
+	var CreatedDate = new Date().toString('dd-mm-yyyy h:mm:ss');
+	var note = document.createElement("div");
 	note.setAttribute("id",title);
-	note.setAttribute("onclick", "newNote(this.id)");
-	note.setAttribute("type", "submit");
+	note.className = "eachNote";
+	var editButton = document.createElement("input");
+	editButton.setAttribute("onclick", "newNote(this.parentNode.id)");
+	editButton.setAttribute("type", "submit");
+	editButton.setAttribute("value", "Edit");
+	var txt = document.createTextNode(title + ModDate + CreatedDate);
 	note.appendChild(txt);
+	note.appendChild(editButton);
+	var element = document.getElementById("notes");
 	element.insertBefore(note,element.firstChild);
-	writeDb(title, text, ModDate, isNew);
+	writeDb(title, text, ModDate, CreatedDate);
 }
 
 function modifyNote(title, text){
 	endDialogue();
 	var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
-	var isNew = "no";
-	writeDb(title, text, ModDate, isNew);
+	var notNew = "true";
+	writeDb(title, text, ModDate, notNew);
 }
 
 function writeDb(Title,Body, NTime, isNewNote)
@@ -94,9 +98,12 @@ function writeDb(Title,Body, NTime, isNewNote)
 	var notes = {};
 	notes.title = Title;
 	notes.body = Body;
-	if (isNewNote="yes") {
-		notes.createdDate = new Date().toString('dd-mm-yyyy h:mm:ss');
+	if (notNewNote="true") {
+		notes.createdDate = NTime;
 	}
+	    else {
+		notes.createdDate = notNewNote;
+	    }
 	notes.modifiedDate = NTime;
 	localStorage.setItem( Title, JSON.stringify(notes) );
 }
