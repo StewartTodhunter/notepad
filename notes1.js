@@ -113,7 +113,7 @@ function notesLoad() {
 	for (var i=0; i < localStorageKeys.length; i++)  {
 		var notesList = JSON.parse(localStorage.getItem(localStorageKeys[i]));
 		var note = document.createElement("Button");
-		var txt = document.createTextNode(notesList.title + notesList.body);
+		var txt = document.createTextNode(notesList.title + notesList.modifiedDate);
 		var element = document.getElementById("notes");
 		note.setAttribute("id",notesList.title);
 		note.setAttribute("onclick", "newNote(this.id)");
