@@ -112,13 +112,17 @@ function notesLoad() {
 	var localStorageKeys = Object.keys(localStorage); 
 	for (var i=0; i < localStorageKeys.length; i++)  {
 		var notesList = JSON.parse(localStorage.getItem(localStorageKeys[i]));
-		var note = document.createElement("Button");
-		var txt = document.createTextNode(notesList.title + notesList.modifiedDate);
-		var element = document.getElementById("notes");
+		var note = document.createElement("div");
 		note.setAttribute("id",notesList.title);
-		note.setAttribute("onclick", "newNote(this.id)");
-		note.setAttribute("type", "submit");
+		note.className = "eachNote";
+		var editButton = document.createElement("input");
+		editButton.setAttribute("onclick", "newNote(this.parentNode.id)");
+		editButton.setAttribute("type", "submit");
+		editButton.setAttribute("value", "Edit");
+		var txt = document.createTextNode(notesList.title + notesList.modifiedDate + notesList.createdDate);
+		var element = document.getElementById("notes");
 		note.appendChild(txt);
+		note.appendChild(editButton);
 		element.insertBefore(note,element.firstChild);
 	}
 }
