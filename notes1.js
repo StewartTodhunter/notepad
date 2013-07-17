@@ -121,4 +121,13 @@ function notesLoad() {
 		note.appendChild(txt);
 		element.insertBefore(note,element.firstChild);
 	}
-}	
+}
+
+function sortByModified() {
+
+}
+
+function sortByCreated() {
+
+}
+
