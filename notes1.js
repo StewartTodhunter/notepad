@@ -109,9 +109,16 @@ function ReadDb(id)
 }
 
 function notesLoad() {
-	var localStorageKeys = Object.keys(localStorage);
-	for (var i=1; i < localStorageKeys.length; i++)  {
-			alert(JSON.parse(localStorage.getItem(localStorageKeys[i])));
+	var localStorageKeys = Object.keys(localStorage); 
+	for (var i=0; i < localStorageKeys.length; i++)  {
+		var notesList = JSON.parse(localStorage.getItem(localStorageKeys[i]));
+		var note = document.createElement("Button");
+		var txt = document.createTextNode(notesList.title + notesList.body);
+		var element = document.getElementById("notes");
+		note.setAttribute("id",notesList.title);
+		note.setAttribute("onclick", "newNote(this.id)");
+		note.setAttribute("type", "submit");
+		note.appendChild(txt);
+		element.insertBefore(note,element.firstChild);
 	}
-	
 }	
