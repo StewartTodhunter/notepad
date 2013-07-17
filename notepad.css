@@ -35,16 +35,16 @@ body {
 	background:-moz-linear-gradient( center top, #66CCFF 5%, #D8F2FF 100% );
 }
 
-.note {
+.eachNote {
+	width: 80%;
 	padding: 10px;
-	padding-top: 0px;
 	background-color: white;
-	float: left;
-	margin: 20px;
+	margin: 1%;
+	border: 3px inset #66CCFF;
 	overflow: auto;
-	font-size: 0.2em;
+	font-size: 1em;
 	word-wrap: break-word;
-	width: 20%;
+	float: left;
 }
 
 #dialogue {
