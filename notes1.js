@@ -75,6 +75,7 @@ function applyNote(title, text){
 	note.setAttribute("id",title);
 	note.className = "eachNote";
 	var editButton = document.createElement("input");
+	editButton.setAttribute("id", "editButtonStyle");
 	editButton.setAttribute("onclick", "newNote(this.parentNode.id)");
 	editButton.setAttribute("type", "submit");
 	editButton.setAttribute("value", "Edit");
@@ -125,6 +126,7 @@ function notesLoad() {
 		note.setAttribute("id",notesList.title);
 		note.className = "eachNote";
 		var editButton = document.createElement("input");
+		editButton.setAttribute("id", "editButtonStyle");
 		editButton.setAttribute("onclick", "newNote(this.parentNode.id)");
 		editButton.setAttribute("type", "submit");
 		editButton.setAttribute("value", "Edit");
