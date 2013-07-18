@@ -154,7 +154,7 @@ var notes = (function() {
 		var notesList = new Array();	
 		for (var i=0; i < localStorageKeys.length; i++)  {
 			notesList[i] = JSON.parse(localStorage.getItem(localStorageKeys[i]));
-			alert(notesList[i].modifiedDate);
+			//alert(notesList[i].modifiedDate);
 		}
 		var date_sort_des = function (note1, note2) {
 	    		if (note1.modifiedDate> note2.modifiedDate) return -1;
@@ -162,6 +162,7 @@ var notes = (function() {
 	  		return 0;
 		};
 		var sorted = notesList.sort(date_sort_des);
+		var element = document.getElementById('notes');
 		for (var i=0; i<sorted.length;i++)
 		{
 			//alert(sorted[i].modifiedDate)
