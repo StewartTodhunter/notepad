@@ -84,6 +84,7 @@ var notes = (function() {
 		note.setAttribute("id",title);
 		note.className = "eachNote";
 		var editButton = document.createElement("input");
+		editButton.setAttribute("id", "editButtonStyle");
 		editButton.setAttribute("onclick", "notes.newNote(this.parentNode.id)");
 		editButton.setAttribute("type", "submit");
 		editButton.setAttribute("value", "Edit");
@@ -132,6 +133,7 @@ var notes = (function() {
 			note.setAttribute("id",notesList.title);
 			note.className = "eachNote";
 			var editButton = document.createElement("input");
+			editButton.setAttribute("id", "editButtonStyle");
 			editButton.setAttribute("onclick", "pub.newNote(this.parentNode.id)");
 			editButton.setAttribute("type", "submit");
 			editButton.setAttribute("value", "Edit");
