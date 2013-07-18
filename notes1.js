@@ -56,6 +56,7 @@ var notes = (function() {
 			titleField.setAttribute("value",noteCont.title);
 			textArea.value = noteCont.body;
 			sButton.setAttribute("onclick","notes.modifyNote(msgTitle.value, msg.value)");
+			pub.getFocus();
 		}
 		else{
 			sButton.setAttribute("onclick","notes.applyNote(msgTitle.value, msg.value)");
@@ -63,7 +64,7 @@ var notes = (function() {
 		dialogue.appendChild(sButton);	
 		dialogue.appendChild(sCancel);
 		document.body.appendChild(dialogue);
-		pub.getFocus();
+		
 	}
 	
 	pub.endDialogue  = function() {
