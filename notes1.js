@@ -192,7 +192,6 @@ var notes = (function() {
 		var notesList = new Array();	
 		for (var i=0; i < localStorageKeys.length; i++)  {
 			notesList[i] = JSON.parse(localStorage.getItem(localStorageKeys[i]));
-			alert(notesList[i].createdDate);
 		}
 		var date_sort_des = function (note1, note2) {
     			if (note1.createdDate> note2.createdDate) return -1;
