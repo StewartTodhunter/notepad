@@ -162,10 +162,10 @@ var notes = (function() {
 	  		return 0;
 		};
 		var sorted = notesList.sort(date_sort_des);
-		pub.refresh();
+		pub.refresh(sorted);
 	}
 	
-	pub.refresh = function() {
+	pub.refresh = function(sorted) {
 		var element = document.getElementById('notes');
 		document.getElementById('notes').innerHTML = "";
 		for (var i=0; i<sorted.length;i++)
@@ -201,7 +201,7 @@ var notes = (function() {
 		};
 		var sorted = notesList.sort(date_sort_des);
 		
-		pub.refresh();
+		pub.refresh(sorted);
 	}
 	
 	return pub;
