@@ -93,7 +93,7 @@ var notes = (function()
 		pub.endDialogue();
 		var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
 		var CreatedDate = new Date().toString('dd-mm-yyyy h:mm:ss');
-		var txt = document.createTextNode(title + "<br /> Modified Date: " + ModDate + "<br />Created Date: " + CreatedDate);
+		var txt = document.createTextNode(title + \n + "Modified Date: " + ModDate + \n +"Created Date: " + CreatedDate);
 		var note = document.createElement("div");
 		note.setAttribute("id",title);
 		note.className = "eachNote";
@@ -159,7 +159,7 @@ var notes = (function()
 			editButton.setAttribute("type", "submit");
 			editButton.setAttribute("value", "Edit");
 			
-			var txt = document.createTextNode(notesList.title + "<br />Modified Date: " + notesList.modifiedDate + "<br />Created Date: " +  notesList.createdDate);
+			var txt = document.createTextNode(notesList.title + \n + "Modified Date: " + notesList.modifiedDate + \n + "Created Date: " +  notesList.createdDate);
 			var element = document.getElementById("notes");
 			note.appendChild(txt);
 			note.appendChild(editButton);
@@ -183,7 +183,7 @@ var notes = (function()
 			editButton.setAttribute("type", "submit");
 			editButton.setAttribute("value", "Edit");
 			
-			var txt = document.createTextNode(sorted[i].title +  "<br />Modified Date: " + sorted[i].modifiedDate +  "<br />Created Date: " + sorted[i].createdDate);
+			var txt = document.createTextNode(sorted[i].title + \n + "Modified Date: " + sorted[i].modifiedDate +  \n + "Created Date: " + sorted[i].createdDate);
 			note.appendChild(txt);
 			note.appendChild(editButton);
 			element.insertBefore(note,element.firstChild);
