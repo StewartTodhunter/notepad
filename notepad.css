@@ -5,7 +5,7 @@ h3 {
 }
 
 body {
-	background-color: #313127;
+	background-color: #2C1600;
 }
 
 #new {
@@ -38,9 +38,9 @@ body {
 .eachNote {
 	width: 80%;
 	padding: 10px;
-	background-color: #FFFF99;
+	background-color: #FFFFCC;
 	margin: 1%;
-	border: 3px inset #66CCFF;
+	border: 3px inset #FF9933;
 	border-radius: .3em;
 	overflow: auto;
 	font-size: 1em;
@@ -90,8 +90,4 @@ body {
 .dialogueButtons {
 	font-size: 1.5em;
 	margin-right: 2%;
-}
-
-#status{
-	background-color: white;
 }
