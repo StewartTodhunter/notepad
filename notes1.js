@@ -164,11 +164,11 @@ var notes = (function() {
 		var sorted = notesList.sort(date_sort_des);
 		for (var i=0; i<sorted.length;i++)
 		{
-			alert(sorted[i].modifiedDate)
+			//alert(sorted[i].modifiedDate)
 			document.getElementById('notes').innerHTML = "";
 			
 			var note = document.createElement("div");
-			note.setAttribute("id",title);
+			note.setAttribute("id",sorted[i].title);
 			note.className = "eachNote";
 			
 			var editButton = document.createElement("input");
