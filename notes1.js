@@ -1,16 +1,20 @@
-var notes = (function() {
+var notes = (function() 
+{
 
 	var pub = {};
 	
-	window.onload=function(){	
+	window.onload=function()
+	{	
 		pub.notesLoad();		
 	};
 
-	pub.getFocus = function() {
-		document.getElementById("msgTitle").focus()
+	pub.getFocus = function(itemToFocusOn) 
+	{
+		itemToFocusOn.focus()
 	}
 
-	pub.newNote = function(identity) {
+	pub.newNoteDialogue = function(identity) 
+	{
 		document.getElementById('clickToCreateNewNote').disabled = true;
 		var dialogue = document.createElement("div");
 		dialogue.setAttribute("id","dialogue");
@@ -18,6 +22,7 @@ var notes = (function() {
 		var br1 = document.createElement("br");
 		var br2 = document.createElement("br");
 		var titleHeading = document.createElement("span");
+		titleHeading.setAttribute("id", "titleLabel");
 		titleHeading.innerHTML = "Title: ";
 		
 		var titleField = document.createElement("input");
@@ -33,66 +38,72 @@ var notes = (function() {
 		dialogue.appendChild(titleField);
 		dialogue.appendChild(br1);
 		dialogue.appendChild(textArea);
-		//dialogue.appendChild(br2);
 		
-		var sButton = document.createElement("input");
-		sButton.setAttribute("type", "Submit");
-		sButton.setAttribute("value", "Submit");
+		var submitButton = document.createElement("input");
+		submitButton.setAttribute("type", "Submit");
+		submitButton.setAttribute("value", "Submit");
 			
-		var sCancel = document.createElement("input");
-		sCancel.setAttribute("type", "submit");
-		sCancel.setAttribute("value", "Cancel");
-		sCancel.setAttribute("onclick","notes.endDialogue()");
+		var cancelButton = document.createElement("input");
+		cancelButton.setAttribute("type", "submit");
+		cancelButton.setAttribute("value", "Cancel");
+		cancelButton.setAttribute("onclick","notes.endDialogue()");
 		
-		if (identity!="clickToCreateNewNote") {
-			var sRemove = document.createElement("input");					
-			sRemove.setAttribute("type", "Submit");
-			sRemove.setAttribute("value", "Remove");
-			sRemove.setAttribute("onclick","notes.noteRemove(msgTitle.value)");
-			dialogue.appendChild(sRemove);
-			var noteCont = new Array();
-			noteCont = pub.ReadDb(identity);
-			//dialogue.innerHTML = "<form id=\"inputForm\" onSubmit=\"return false\">Title:<input id=\"noteTitle\" value='noteCont.title' type=\"text\"></input><br/><textarea id=\"inputArea\" rows=\"20\" value=noteCont.body></textarea><br/><input type=\"submit\" value=\"submit\" onclick=\"applyNote(noteTitle.value, inputArea.value)\"><input type=\"submit\" value=\"cancel\" onclick=\"endDialogue()\"></form>";
-			titleField.setAttribute("value",noteCont.title);
-			textArea.value = noteCont.body;
-			sButton.setAttribute("onclick","notes.modifyNote(msgTitle.value, msg.value)");
-			pub.getFocus();
+		dialogue.appendChild(submitButton);	
+		dialogue.appendChild(cancelButton);
+		if (identity!="clickToCreateNewNote") 
+		{
+			var deleteButton = document.createElement("input");					
+			deleteButton.setAttribute("type", "Submit");
+			deleteButton.setAttribute("value", "Delete");
+			deleteButton.setAttribute("onclick","notes.noteRemove(msgTitle.value)");
+			dialogue.appendChild(deleteButton);
+			
+			var noteContent = new Array();
+			noteContent = pub.ReadDb(identity);
+			titleField.setAttribute("value",noteContent.title);
+			titleField.disabled = true;
+			textArea.value = noteContent.body;
+			submitButton.setAttribute("onclick","notes.modifyNote(msgTitle.value, msg.value)");	
 		}
-		else{
-			sButton.setAttribute("onclick","notes.applyNote(msgTitle.value, msg.value)");
+		else
+		{
+			pub.getFocus(titleField);
+			submitButton.setAttribute("onclick","notes.saveNewNote(msgTitle.value, msg.value)");
 		}
-		dialogue.appendChild(sButton);	
-		dialogue.appendChild(sCancel);
 		document.body.appendChild(dialogue);
 		
 	}
 	
-	pub.endDialogue  = function() {
+	pub.endDialogue  = function() 
+	{
 		document.body.removeChild(document.getElementById("dialogue"));
 		document.getElementById('clickToCreateNewNote').disabled = false;
 	}
 
-	pub.noteRemove = function(title) {
+	pub.noteRemove = function(title) 
+	{
 		localStorage.removeItem(title);
 		var element = document.getElementById(title);
 		element.parentNode.removeChild(element);
 		pub.endDialogue();
 	}
 
-	pub.applyNote = function(title, text){
+	pub.saveNewNote = function(title, text)
+	{
 		pub.endDialogue();
 		var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
 		var CreatedDate = new Date().toString('dd-mm-yyyy h:mm:ss');
-		
+		var txt = document.createTextNode(title + ModDate + CreatedDate);
 		var note = document.createElement("div");
 		note.setAttribute("id",title);
 		note.className = "eachNote";
+		
 		var editButton = document.createElement("input");
 		editButton.setAttribute("id", "editButtonStyle");
 		editButton.setAttribute("onclick", "notes.newNote(this.parentNode.id)");
 		editButton.setAttribute("type", "submit");
 		editButton.setAttribute("value", "Edit");
-		var txt = document.createTextNode(title + ModDate + CreatedDate);
+		
 		note.appendChild(txt);
 		note.appendChild(editButton);
 		var element = document.getElementById("notes");
@@ -101,28 +112,26 @@ var notes = (function() {
 		pub.writeDb(title, text, ModDate, CreatedDate);
 	}
 
-	pub.modifyNote = function(title, text){
+	pub.modifyNote = function(title, text)
+	{
 		document.getElementById('msgTitle').disabled = true;
 		pub.endDialogue();
-		var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
-		var thisNote = localStorage.getItem(title);
+		var thisNote = new Array();
+		thisNote = pub.ReadDb(title);
 		var DateCreated = thisNote.createdDate;
-		//var isNew = "false";
-		pub.writeDb(title, text, ModDate, DateCreated);
+		var DateModified = new Date().toString('dd-mm-yyyy h:mm:ss');
+		pub.writeDb(title, text, DateModified, DateCreated);
 		document.getElementById('notes').innerHTML = "";
 		pub.notesLoad();
 	}
 
-	pub.writeDb = function(Title,Body, NTime, dateCreated)
+	pub.writeDb = function(Title, Body, ModifiedTimeStamp, CreatedTimeStamp)
 	{
 		var notes = {};
 		notes.title = Title;
 		notes.body = Body;
-		//if (isNewNote=="true") {
-		//	notes.createdDate = NTime;
-		//}
-		notes.modifiedDate = NTime;
-		notes.createdDate = dateCreated;
+		notes.modifiedDate = ModifiedTimeStamp;
+		notes.createdDate = CreatedTimeStamp;
 		localStorage.setItem( Title, JSON.stringify(notes) );
 	}
 
@@ -133,18 +142,23 @@ var notes = (function() {
 		return noteStore;
 	}
 
-	pub.notesLoad = function() {
+	pub.notesLoad = function() 
+	{
+		document.getElementById('clickToCreateNewNote').disabled = false;
 		var localStorageKeys = Object.keys(localStorage); 
-		for (var i=0; i < localStorageKeys.length; i++)  {
+		for (var i=0; i < localStorageKeys.length; i++)  
+		{
 			var notesList = JSON.parse(localStorage.getItem(localStorageKeys[i]));
 			var note = document.createElement("div");
 			note.setAttribute("id",notesList.title);
 			note.className = "eachNote";
+			
 			var editButton = document.createElement("input");
 			editButton.setAttribute("id", "editButtonStyle");
 			editButton.setAttribute("onclick", "notes.newNote(this.parentNode.id)");
 			editButton.setAttribute("type", "submit");
 			editButton.setAttribute("value", "Edit");
+			
 			var txt = document.createTextNode(notesList.title + notesList.modifiedDate + notesList.createdDate);
 			var element = document.getElementById("notes");
 			note.appendChild(txt);
@@ -153,25 +167,8 @@ var notes = (function() {
 		}
 	}
 
-
-	// based on http://onpub.com/how-to-sort-an-array-of-dates-with-javascript-s7-a109
-	pub.sortByModified = function() {
-		var localStorageKeys = Object.keys(localStorage); 
-		var notesList = new Array();	
-		for (var i=0; i < localStorageKeys.length; i++)  {
-			notesList[i] = JSON.parse(localStorage.getItem(localStorageKeys[i]));
-			//alert(notesList[i].modifiedDate);
-		}
-		var date_sort_des = function (note1, note2) {
-	    		if (note1.modifiedDate> note2.modifiedDate) return -1;
-	  		if (note1.modifiedDate < note2.modifiedDate) return 1;
-	  		return 0;
-		};
-		var sorted = notesList.sort(date_sort_des);
-		pub.refresh(sorted);
-	}
-	
-	pub.refresh = function(sorted) {
+	pub.refresh = function(sorted) 
+	{
 		var element = document.getElementById('notes');
 		document.getElementById('notes').innerHTML = "";
 		for (var i=0; i<sorted.length;i++)
@@ -192,19 +189,41 @@ var notes = (function() {
 			element.insertBefore(note,element.firstChild);
 		}
 	}
-
-	pub.sortByCreated = function() {
+	
+	// based on http://onpub.com/how-to-sort-an-array-of-dates-with-javascript-s7-a109
+	pub.sortByModified = function() 
+	{
 		var localStorageKeys = Object.keys(localStorage); 
 		var notesList = new Array();	
-		for (var i=0; i < localStorageKeys.length; i++)  {
+		for (var i=0; i < localStorageKeys.length; i++)  
+		{
 			notesList[i] = JSON.parse(localStorage.getItem(localStorageKeys[i]));
 		}
-		var date_sort_des = function (note1, note2) {
+		var date_sort_descending = function (note1, note2) 
+		{
+	    		if (note1.modifiedDate> note2.modifiedDate) return -1;
+	  		if (note1.modifiedDate < note2.modifiedDate) return 1;
+	  		return 0;
+		};
+		var sorted = notesList.sort(date_sort_descending);
+		pub.refresh(sorted);
+	}
+	
+	pub.sortByCreated = function() 
+	{
+		var localStorageKeys = Object.keys(localStorage); 
+		var notesList = new Array();	
+		for (var i=0; i < localStorageKeys.length; i++)  
+		{
+			notesList[i] = JSON.parse(localStorage.getItem(localStorageKeys[i]));
+		}
+		var date_sort_descending = function (note1, note2) 
+		{
     			if (note1.createdDate> note2.createdDate) return -1;
  			if (note1.createdDate < note2.createdDate) return 1;
   			return 0;
 		};
-		var sorted = notesList.sort(date_sort_des);
+		var sorted = notesList.sort(date_sort_descending);
 		
 		pub.refresh(sorted);
 	}
