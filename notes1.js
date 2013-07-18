@@ -134,18 +134,23 @@ function notesLoad() {
 	}
 }
 
-/*
+
 // based on http://onpub.com/how-to-sort-an-array-of-dates-with-javascript-s7-a109
 function sortByModified() {
-	var wholeNoteList = JSON.parse(localStorage.getItem(localStorageKeys[i]));
-	var localStorageKeys = Object.keys(localStorage); 
+	var localStorageKeys = Object.keys(localStorage); 	
 	for (var i=0; i < localStorageKeys.length; i++)  {
-		var ModifiedDateList = wholeNoteList.modifiedDate;
-		var sortedModifiedList = function (ModifiedDateList) {
-			return (ModifiedDateList[i] > ModifiedDateList[i+1]) ? 1 : (ModifiedDateList[i] < ModifiedDateList[i+1]) ? -1 : 0;
-		ModifiedDateList.sort(sortedModifiedList);
-		
-		var note = document.createElement("div");
+		var wholeNoteList = JSON.parse(localStorage.getItem(localStorageKeys[i]));		
+		var ModifiedDateArray = wholeNoteList.modifiedDate;		
+		//alert(ModifiedDateArray);		
+
+		var comparedModifiedList = 
+			function (ModifiedDateArray) {
+				if (ModifiedDateArray[i] > ModifiedDateArray[i+1]) return -1;
+				if (ModifiedDateArray[i] < ModifiedDateArray[i+1]) return 1;
+				return 0;
+			}; 
+	
+		/*var note = document.createElement("div");
 		note.setAttribute("id",wholeNoteList.title);
 		note.className = "eachNote";
 		var editButton = document.createElement("input");
@@ -156,9 +161,10 @@ function sortByModified() {
 		var element = document.getElementById("notes");
 		note.appendChild(txt);
 		note.appendChild(editButton);
-		element.insertBefore(note,element.firstChild);
+		element.insertBefore(note,element.firstChild);*/
 	}
-}*/
+	var sorted = ModifiedDateArray.sort(comparedModifiedList);
+}
 
 function sortByCreated() {
 
