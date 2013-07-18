@@ -101,23 +101,27 @@ var notes = (function() {
 	}
 
 	pub.modifyNote = function(title, text){
+		document.getElementById('msgTitle').disabled = true;
 		pub.endDialogue();
 		var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
-		var isNew = "false";
-		pub.writeDb(title, text, ModDate, isNew);
+		var thisNote = localStorage.getItem(title);
+		var DateCreated = thisNote.createdDate;
+		//var isNew = "false";
+		pub.writeDb(title, text, ModDate, DateCreated);
 		document.getElementById('notes').innerHTML = "";
 		pub.notesLoad();
 	}
 
-	pub.writeDb = function(Title,Body, NTime, isNewNote)
+	pub.writeDb = function(Title,Body, NTime, dateCreated)
 	{
 		var notes = {};
 		notes.title = Title;
 		notes.body = Body;
-		if (isNewNote=="true") {
-			notes.createdDate = NTime;
-		}
+		//if (isNewNote=="true") {
+		//	notes.createdDate = NTime;
+		//}
 		notes.modifiedDate = NTime;
+		notes.createdDate = dateCreated;
 		localStorage.setItem( Title, JSON.stringify(notes) );
 	}
 
