@@ -80,6 +80,7 @@ var notes = (function() {
 		pub.endDialogue();
 		var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
 		var CreatedDate = new Date().toString('dd-mm-yyyy h:mm:ss');
+		
 		var note = document.createElement("div");
 		note.setAttribute("id",title);
 		note.className = "eachNote";
@@ -93,6 +94,7 @@ var notes = (function() {
 		note.appendChild(editButton);
 		var element = document.getElementById("notes");
 		element.insertBefore(note,element.firstChild);
+		
 		pub.writeDb(title, text, ModDate, CreatedDate);
 	}
 
@@ -163,6 +165,22 @@ var notes = (function() {
 		for (var i=0; i<sorted.length;i++)
 		{
 			alert(sorted[i].modifiedDate)
+			document.getElementById('notes').innerHTML = "";
+			
+			var note = document.createElement("div");
+			note.setAttribute("id",title);
+			note.className = "eachNote";
+			
+			var editButton = document.createElement("input");
+			editButton.setAttribute("id", "editButtonStyle");
+			editButton.setAttribute("onclick", "notes.newNote(this.parentNode.id)");
+			editButton.setAttribute("type", "submit");
+			editButton.setAttribute("value", "Edit");
+			
+			var txt = document.createTextNode(sorted[i].title + sorted[i].modifiedDate + sorted[i].createdDate);
+			note.appendChild(txt);
+			note.appendChild(editButton);
+			element.insertBefore(note,element.firstChild);
 		}
 	}
 
