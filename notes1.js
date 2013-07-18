@@ -101,7 +101,7 @@ function writeDb(Title,Body, NTime, notNewNote)
 	if (notNewNote=="true") {
 		var noteStore = {};
 		noteStore = JSON.parse(localStorage.getItem(Title));
-		notes.createdDate = noteStore.createdDate;
+		notes.createdDate = noteStore.createdDate
 	}
 	    else {
 		notes.createdDate = NTime;

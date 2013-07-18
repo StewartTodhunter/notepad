@@ -41,7 +41,6 @@ body {
 	background-color: white;
 	margin: 1%;
 	border: 3px inset #66CCFF;
-	border-radius: .3em;
 	overflow: auto;
 	font-size: 1em;
 	word-wrap: break-word;
