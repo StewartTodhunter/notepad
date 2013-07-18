@@ -100,7 +100,7 @@ var notes = (function()
 		
 		var editButton = document.createElement("input");
 		editButton.setAttribute("id", "editButtonStyle");
-		editButton.setAttribute("onclick", "notes.newNote(this.parentNode.id)");
+		editButton.setAttribute("onclick", "notes.newNoteDialogue(this.parentNode.id)");
 		editButton.setAttribute("type", "submit");
 		editButton.setAttribute("value", "Edit");
 		
@@ -155,7 +155,7 @@ var notes = (function()
 			
 			var editButton = document.createElement("input");
 			editButton.setAttribute("id", "editButtonStyle");
-			editButton.setAttribute("onclick", "notes.newNote(this.parentNode.id)");
+			editButton.setAttribute("onclick", "notes.newNoteDialogue(this.parentNode.id)");
 			editButton.setAttribute("type", "submit");
 			editButton.setAttribute("value", "Edit");
 			
@@ -179,7 +179,7 @@ var notes = (function()
 			
 			var editButton = document.createElement("input");
 			editButton.setAttribute("id", "editButtonStyle");
-			editButton.setAttribute("onclick", "notes.newNote(this.parentNode.id)");
+			editButton.setAttribute("onclick", "notes.newNoteDialogue(this.parentNode.id)");
 			editButton.setAttribute("type", "submit");
 			editButton.setAttribute("value", "Edit");
 			
