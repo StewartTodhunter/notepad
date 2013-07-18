@@ -11,6 +11,7 @@ var notes = (function() {
 	}
 
 	pub.newNote = function(identity) {
+		document.getElementById('clickToCreateNewNote').disabled = true;
 		var dialogue = document.createElement("div");
 		dialogue.setAttribute("id","dialogue");
 		
@@ -37,17 +38,18 @@ var notes = (function() {
 		var sButton = document.createElement("input");
 		sButton.setAttribute("type", "Submit");
 		sButton.setAttribute("value", "Submit");
-		
-		var sRemove = document.createElement("input");
-		sRemove.setAttribute("type", "Submit");
-		sRemove.setAttribute("value", "Remove");
-		sRemove.setAttribute("onclick","notes.noteRemove(msgTitle.value)");
 			
 		var sCancel = document.createElement("input");
 		sCancel.setAttribute("type", "submit");
 		sCancel.setAttribute("value", "Cancel");
 		sCancel.setAttribute("onclick","notes.endDialogue()");
+		
 		if (identity!="clickToCreateNewNote") {
+			var sRemove = document.createElement("input");					
+			sRemove.setAttribute("type", "Submit");
+			sRemove.setAttribute("value", "Remove");
+			sRemove.setAttribute("onclick","notes.noteRemove(msgTitle.value)");
+			
 			var noteCont = new Array();
 			noteCont = pub.ReadDb(identity);
 			//dialogue.innerHTML = "<form id=\"inputForm\" onSubmit=\"return false\">Title:<input id=\"noteTitle\" value='noteCont.title' type=\"text\"></input><br/><textarea id=\"inputArea\" rows=\"20\" value=noteCont.body></textarea><br/><input type=\"submit\" value=\"submit\" onclick=\"applyNote(noteTitle.value, inputArea.value)\"><input type=\"submit\" value=\"cancel\" onclick=\"endDialogue()\"></form>";
@@ -67,6 +69,7 @@ var notes = (function() {
 	
 	pub.endDialogue  = function() {
 		document.body.removeChild(document.getElementById("dialogue"));
+		document.getElementById('clickToCreateNewNote').disabled = false;
 	}
 
 	pub.noteRemove = function(title) {
@@ -103,6 +106,8 @@ var notes = (function() {
 		var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
 		var notNew = "true";
 		pub.writeDb(title, text, ModDate, notNew);
+		document.getElementById('notes').innerHTML = "";
+		pub.notesLoad();
 	}
 
 	pub.writeDb = function(Title,Body, NTime, isNewNote)
