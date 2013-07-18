@@ -103,7 +103,7 @@ var notes = (function() {
 	pub.modifyNote = function(title, text){
 		pub.endDialogue();
 		var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
-		var isNew = "true";
+		var isNew = "false";
 		pub.writeDb(title, text, ModDate, isNew);
 		document.getElementById('notes').innerHTML = "";
 		pub.notesLoad();
