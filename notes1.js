@@ -134,7 +134,7 @@ var notes = (function() {
 			note.className = "eachNote";
 			var editButton = document.createElement("input");
 			editButton.setAttribute("id", "editButtonStyle");
-			editButton.setAttribute("onclick", "pub.newNote(this.parentNode.id)");
+			editButton.setAttribute("onclick", "notes.newNote(this.parentNode.id)");
 			editButton.setAttribute("type", "submit");
 			editButton.setAttribute("value", "Edit");
 			var txt = document.createTextNode(notesList.title + notesList.modifiedDate + notesList.createdDate);
