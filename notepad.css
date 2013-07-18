@@ -38,13 +38,14 @@ body {
 .eachNote {
 	width: 80%;
 	padding: 10px;
-	background-color: white;
+	background-color: #FFFF99;
 	margin: 1%;
 	border: 3px inset #66CCFF;
 	overflow: auto;
 	font-size: 1em;
 	word-wrap: break-word;
 	float: left;
+	position: relative;
 }
 
 #dialogue {
