@@ -102,17 +102,19 @@ var notes = (function() {
 		pub.writeDb(title, text, ModDate, notNew);
 	}
 
-	pub.writeDb = function(Title,Body, NTime, isNewNote)
+	pub.writeDb = function(Title,Body, NTime, notNewNote)
 	{
 		var notes = {};
 		notes.title = Title;
 		notes.body = Body;
-		if (notNewNote="true") {
-			notes.createdDate = NTime;
+		if (notNewNote=="true") {
+			var noteStore = {};
+			noteStore = JSON.parse(localStorage.getItem(Title));
+			notes.createdDate = noteStore.createdDate
 		}
-			else {
-			notes.createdDate = notNewNote;
-			}
+	    	else {
+			notes.createdDate = NTime;
+	    	}
 		notes.modifiedDate = NTime;
 		localStorage.setItem( Title, JSON.stringify(notes) );
 	}
