@@ -162,11 +162,12 @@ var notes = (function() {
 	  		return 0;
 		};
 		var sorted = notesList.sort(date_sort_des);
-		
+		var element = document.getElementById('notes');
+		document.getElementById('notes').innerHTML = "";
 		for (var i=0; i<sorted.length;i++)
 		{
 			//alert(sorted[i].title);
-			document.getElementById('notes').innerHTML = "";
+			
 			
 			var note = document.createElement("div");
 			note.setAttribute("id",sorted[i].title);
@@ -177,7 +178,7 @@ var notes = (function() {
 			editButton.setAttribute("onclick", "notes.newNote(this.parentNode.id)");
 			editButton.setAttribute("type", "submit");
 			editButton.setAttribute("value", "Edit");
-			var element = document.getElementById('notes');
+			
 			var txt = document.createTextNode(sorted[i].title + sorted[i].modifiedDate + sorted[i].createdDate);
 			note.appendChild(txt);
 			note.appendChild(editButton);
