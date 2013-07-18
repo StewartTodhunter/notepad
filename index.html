@@ -4,10 +4,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="notepad.css">
 	</head>
-	<body onload="notesLoad()">
-		<input id="clickToCreateNewNote" value="Add Note" type="submit" onclick="newNote(this.id)"/>
-		<input id="sortByModified" value="Sort by Modified On" type="submit" onclick="sortByModified()"/>
-		<input id="sortByCreated" value="Sort by Created On" type="submit" onclick="sortByCreated()"/>
+	<body<!--onload="notes.notesLoad()" this function is now called in the javascript onload-->/>
+		<input id="clickToCreateNewNote" value="Add Note" type="submit" onclick="notes.newNote(this.id)"/>
+		<input id="sortByModified" value="Sort by Modified On" type="submit" onclick="notes.sortByModified()"/>
+		<input id="sortByCreated" value="Sort by Created On" type="submit" onclick="notes.sortByCreated()"/>
 		<div id="notes"></div>
 		<script src="notes1.js"></script>
 	</body>
