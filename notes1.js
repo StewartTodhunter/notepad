@@ -165,7 +165,7 @@ var notes = (function() {
 		var element = document.getElementById('notes');
 		for (var i=0; i<sorted.length;i++)
 		{
-			//alert(sorted[i].modifiedDate)
+			alert(sorted[i].title);
 			document.getElementById('notes').innerHTML = "";
 			
 			var note = document.createElement("div");
@@ -182,6 +182,7 @@ var notes = (function() {
 			note.appendChild(txt);
 			note.appendChild(editButton);
 			element.insertBefore(note,element.firstChild);
+			alert(sorted[i].title);
 		}
 	}
 
