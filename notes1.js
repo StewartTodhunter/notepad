@@ -110,11 +110,11 @@ var notes = (function() {
 		var notes = {};
 		notes.title = Title;
 		notes.body = Body;
-		if (notNewNote="true") {
+		if (isNewNote=="true") {
 			notes.createdDate = NTime;
 		}
 			else {
-			notes.createdDate = notNewNote;
+			notes.createdDate = isNewNote;
 			}
 		notes.modifiedDate = NTime;
 		localStorage.setItem( Title, JSON.stringify(notes) );
