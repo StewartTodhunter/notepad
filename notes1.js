@@ -162,13 +162,14 @@ var notes = (function() {
 	  		return 0;
 		};
 		var sorted = notesList.sort(date_sort_des);
+		pub.refresh();
+	}
+	
+	pub.refresh = function() {
 		var element = document.getElementById('notes');
 		document.getElementById('notes').innerHTML = "";
 		for (var i=0; i<sorted.length;i++)
 		{
-			//alert(sorted[i].title);
-			
-			
 			var note = document.createElement("div");
 			note.setAttribute("id",sorted[i].title);
 			note.className = "eachNote";
@@ -183,7 +184,6 @@ var notes = (function() {
 			note.appendChild(txt);
 			note.appendChild(editButton);
 			element.insertBefore(note,element.firstChild);
-			alert(sorted[i].title);
 		}
 	}
 
@@ -200,10 +200,8 @@ var notes = (function() {
   			return 0;
 		};
 		var sorted = notesList.sort(date_sort_des);
-		for (var i=0; i<sorted.length;i++)
-		{
-			alert(sorted[i].createdDate)
-		}
+		
+		pub.refresh();
 	}
 	
 	return pub;
