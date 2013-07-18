@@ -49,7 +49,7 @@ var notes = (function() {
 			sRemove.setAttribute("type", "Submit");
 			sRemove.setAttribute("value", "Remove");
 			sRemove.setAttribute("onclick","notes.noteRemove(msgTitle.value)");
-			
+			dialogue.appendChild(sRemove);
 			var noteCont = new Array();
 			noteCont = pub.ReadDb(identity);
 			//dialogue.innerHTML = "<form id=\"inputForm\" onSubmit=\"return false\">Title:<input id=\"noteTitle\" value='noteCont.title' type=\"text\"></input><br/><textarea id=\"inputArea\" rows=\"20\" value=noteCont.body></textarea><br/><input type=\"submit\" value=\"submit\" onclick=\"applyNote(noteTitle.value, inputArea.value)\"><input type=\"submit\" value=\"cancel\" onclick=\"endDialogue()\"></form>";
@@ -60,8 +60,7 @@ var notes = (function() {
 		else{
 			sButton.setAttribute("onclick","notes.applyNote(msgTitle.value, msg.value)");
 		}
-		dialogue.appendChild(sButton);
-		dialogue.appendChild(sRemove);
+		dialogue.appendChild(sButton);	
 		dialogue.appendChild(sCancel);
 		document.body.appendChild(dialogue);
 		pub.getFocus();
