@@ -25,8 +25,8 @@ var notes = (function() {
 		
 		var textArea = document.createElement("textarea");
 		textArea.setAttribute("id","msg");
-		textArea.rows = "10";
-		textArea.cols = "80";
+		//textArea.rows = "10";
+		//textArea.cols = "80";
 		
 		dialogue.appendChild(titleHeading);
 		dialogue.appendChild(titleField);
