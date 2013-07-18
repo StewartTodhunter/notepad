@@ -146,36 +146,41 @@ var notes = (function() {
 
 	// based on http://onpub.com/how-to-sort-an-array-of-dates-with-javascript-s7-a109
 	pub.sortByModified = function() {
-		var localStorageKeys = Object.keys(localStorage); 	
+		var localStorageKeys = Object.keys(localStorage); 
+		var notesList = new Array();	
 		for (var i=0; i < localStorageKeys.length; i++)  {
-			var wholeNoteList = JSON.parse(localStorage.getItem(localStorageKeys[i]));		
-			var ModifiedDateArray = wholeNoteList.modifiedDate;		
-			//alert(ModifiedDateArray);		
-
-			var comparedModifiedList = function (ModifiedDateArray) {
-				if (ModifiedDateArray[i] > ModifiedDateArray[i+1]) return -1;
-				if (ModifiedDateArray[i] < ModifiedDateArray[i+1]) return 1;
-				return 0;
-			}; 
-		
-			/*var note = document.createElement("div");
-			note.setAttribute("id",wholeNoteList.title);
-			note.className = "eachNote";
-			var editButton = document.createElement("input");
-			editButton.setAttribute("onclick", "newNote(this.parentNode.id)");
-			editButton.setAttribute("type", "submit");
-			editButton.setAttribute("value", "Edit");
-			var txt = document.createTextNode(wholeNoteList.title + wholeNoteList.modifiedDate + wholeNoteList.createdDate);
-			var element = document.getElementById("notes");
-			note.appendChild(txt);
-			note.appendChild(editButton);
-			element.insertBefore(note,element.firstChild);*/
+			notesList[i] = JSON.parse(localStorage.getItem(localStorageKeys[i]));
+			alert(notesList[i].modifiedDate);
 		}
-		var sorted = ModifiedDateArray.sort(comparedModifiedList);
+		var date_sort_des = function (note1, note2) {
+	    		if (note1.modifiedDate> note2.modifiedDate) return -1;
+	  		if (note1.modifiedDate < note2.modifiedDate) return 1;
+	  		return 0;
+		};
+		var sorted = notesList.sort(date_sort_des);
+		for (var i=0; i<sorted.length;i++)
+		{
+			alert(sorted[i].modifiedDate)
+		}
 	}
 
 	pub.sortByCreated = function() {
-
+		var localStorageKeys = Object.keys(localStorage); 
+		var notesList = new Array();	
+		for (var i=0; i < localStorageKeys.length; i++)  {
+			notesList[i] = JSON.parse(localStorage.getItem(localStorageKeys[i]));
+			alert(notesList[i].createdDate);
+		}
+		var date_sort_des = function (note1, note2) {
+    			if (note1.createdDate> note2.createdDate) return -1;
+ 			if (note1.createdDate < note2.createdDate) return 1;
+  			return 0;
+		};
+		var sorted = notesList.sort(date_sort_des);
+		for (var i=0; i<sorted.length;i++)
+		{
+			alert(sorted[i].createdDate)
+		}
 	}
 	
 	return pub;
