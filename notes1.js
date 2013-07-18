@@ -103,8 +103,8 @@ var notes = (function() {
 	pub.modifyNote = function(title, text){
 		pub.endDialogue();
 		var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
-		var notNew = "true";
-		pub.writeDb(title, text, ModDate, notNew);
+		var isNew = "true";
+		pub.writeDb(title, text, ModDate, isNew);
 		document.getElementById('notes').innerHTML = "";
 		pub.notesLoad();
 	}
@@ -117,9 +117,6 @@ var notes = (function() {
 		if (isNewNote=="true") {
 			notes.createdDate = NTime;
 		}
-			else {
-			notes.createdDate = isNewNote;
-			}
 		notes.modifiedDate = NTime;
 		localStorage.setItem( Title, JSON.stringify(notes) );
 	}
