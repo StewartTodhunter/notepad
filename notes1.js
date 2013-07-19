@@ -91,8 +91,9 @@ var notes = (function()
 	pub.saveNewNote = function(title, text)
 	{
 		pub.endDialogue();
-		var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
-		alert(ModDate.toLocaleString());
+		//var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
+		var ModDate = new Date().toLocaleString();
+		alert(ModDate);
 		var CreatedDate = new Date().toString('dd-mm-yyyy h:mm:ss');
 		var txt = document.createTextNode(title + " Modified Date: " + ModDate + "  Created Date: " + CreatedDate);
 		var note = document.createElement("div");
