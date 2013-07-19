@@ -159,7 +159,7 @@ var notes = (function()
 			editButton.setAttribute("type", "submit");
 			editButton.setAttribute("value", "Edit");
 			
-			var txt = document.createTextNode(notesList.title + "Modified Date: " + notesList.modifiedDate + "Created Date: " +  notesList.createdDate);
+			var txt = document.createTextNode(notesList.title + " Modified Date: " + notesList.modifiedDate + "Created Date: " +  notesList.createdDate);
 			var element = document.getElementById("notes");
 			note.appendChild(txt);
 			note.appendChild(editButton);
@@ -183,7 +183,7 @@ var notes = (function()
 			editButton.setAttribute("type", "submit");
 			editButton.setAttribute("value", "Edit");
 			
-			var txt = document.createTextNode(sorted[i].title + "Modified Date: " + sorted[i].modifiedDate + "Created Date: " + sorted[i].createdDate);
+			var txt = document.createTextNode(sorted[i].title + " Modified Date: " + sorted[i].modifiedDate + "Created Date: " + sorted[i].createdDate);
 			note.appendChild(txt);
 			note.appendChild(editButton);
 			element.insertBefore(note,element.firstChild);
