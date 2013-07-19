@@ -93,7 +93,7 @@ var notes = (function()
 		pub.endDialogue();
 		var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
 		var CreatedDate = new Date().toString('dd-mm-yyyy h:mm:ss');
-		var txt = document.createTextNode(title + \n + "Modified Date: " + ModDate + \n +"Created Date: " + CreatedDate);
+		var txt = document.createTextNode(title + \n + "Modified Date: " + ModDate + "\n Created Date: " + CreatedDate);
 		var note = document.createElement("div");
 		note.setAttribute("id",title);
 		note.className = "eachNote";
