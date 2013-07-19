@@ -93,8 +93,7 @@ var notes = (function()
 		pub.endDialogue();
 		//var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
 		var ModDate = new Date().toLocaleString();
-		alert(ModDate);
-		var CreatedDate = new Date().toString('dd-mm-yyyy h:mm:ss');
+		var CreatedDate = new Date().toLocaleString();
 		var txt = document.createTextNode(title + " Modified Date: " + ModDate + "  Created Date: " + CreatedDate);
 		var note = document.createElement("div");
 		note.setAttribute("id",title);
