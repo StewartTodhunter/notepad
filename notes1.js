@@ -83,7 +83,7 @@ var notes = (function()
 	pub.noteRemove = function(title) 
 	{
 		localStorage.removeItem(title);
-		var element = document.getElementById(title);
+		var element = document.getElementById(title); 
 		element.parentNode.removeChild(element);
 		pub.endDialogue();
 	}
