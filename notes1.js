@@ -49,6 +49,8 @@ var notes = (function()
 		cancelButton.setAttribute("value", "Cancel");
 		cancelButton.setAttribute("onclick","notes.endDialogue()");
 		
+		var lineBreak1 = document.createElement("br");
+		dialogue.appendChild(lineBreak1);
 		dialogue.appendChild(submitButton);	
 		dialogue.appendChild(cancelButton);
 		if (identity!="clickToCreateNewNote") 
