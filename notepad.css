@@ -35,6 +35,12 @@ body {
 	background:-moz-linear-gradient( center top, #66CCFF 5%, #D8F2FF 100% );
 }
 
+#SubmitButton
+{
+	position: absolute;
+	bottom: 2px;
+	left: 2px;
+}
 .eachNote {
 	width: 80%;
 	padding: 10px;
