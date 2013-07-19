@@ -120,7 +120,7 @@ var notes = (function()
 		var thisNote = new Array();
 		thisNote = pub.ReadDb(title);
 		var DateCreated = thisNote.createdDate;
-		var DateModified = new Date().toString('dd-mm-yyyy h:mm:ss');
+		var DateModified = new Date().toLocaleString();
 		pub.writeDb(title, text, DateModified, DateCreated);
 		document.getElementById('notes').innerHTML = "";
 		pub.notesLoad();
