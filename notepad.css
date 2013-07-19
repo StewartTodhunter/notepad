@@ -103,3 +103,10 @@ body {
 		float: left;
 	}
 }
+
+a {
+	position: fixed;
+	top: 40px;
+	right: 5px;
+	width: 42px;
+}

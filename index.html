@@ -4,7 +4,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="notepad.css">
 	</head>
-	<body<!--onload="notes.notesLoad()" this function is now called in the javascript onload-->/>		
+	<body<!--onload="notes.notesLoad()" this function is now called in the javascript onload-->/>
+		<a href="#" 
+  		onclick="
+    		window.open(
+      		'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
+      		'facebook-share-dialog', 
+      		'width=626,height=436'); 
+    		 return false;">
+  		<img alt="Share on facebook" src="share.png"/>
+		</a>		
 		<input id="clickToCreateNewNote" value="+" type="submit" onclick="notes.newNoteDialogue(this.id)"/>
 		<input id="sortByModified" value="Sort by Modified On" type="submit" onclick="notes.sortByModified()"/>
 		<input id="sortByCreated" value="Sort by Created On" type="submit" onclick="notes.sortByCreated()"/>	
