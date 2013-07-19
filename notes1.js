@@ -94,8 +94,8 @@ var notes = (function()
 		//var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
 		var ModDate = new Date().toLocaleString();
 		var CreatedDate = new Date().toLocaleString();
-		var txt = document.createTextNode(title + " - " +text);
-		var lineBreak = document.createElement("<br />");
+		var txt = document.createTextNode(title + " - " + text);
+		var lineBreak = document.createElement("br");
 		var txt2 = document.createTextNode("Modified Date: " + ModDate + "  Created Date: " + CreatedDate);
 		var note = document.createElement("div");
 		note.setAttribute("id",title);
@@ -108,6 +108,8 @@ var notes = (function()
 		editButton.setAttribute("value", "Edit");
 		
 		note.appendChild(txt);
+		note.appendChild(lineBreak);
+		note.appendChild(txt2);
 		note.appendChild(editButton);
 		var element = document.getElementById("notes");
 		element.insertBefore(note,element.firstChild);
@@ -162,11 +164,13 @@ var notes = (function()
 			editButton.setAttribute("type", "submit");
 			editButton.setAttribute("value", "Edit");
 		
-			var txt = document.createTextNode(notesList.title +  " - " + notesList.body);
-			var lineBreak = document.createElement("<br />");
+			var txt = document.createTextNode(notesList.title + " - " + notesList.body);
+			var lineBreak = document.createElement("br");
 			var txt2 = document.createTextNode("Modified Date: " + notesList.modifiedDate + "  Created Date: " +  notesList.createdDate);
 			var element = document.getElementById("notes");
 			note.appendChild(txt);
+			note.appendChild(lineBreak);
+			note.appendChild(txt2);
 			note.appendChild(editButton);
 			element.insertBefore(note,element.firstChild);
 		}
@@ -189,9 +193,11 @@ var notes = (function()
 			editButton.setAttribute("value", "Edit");
 			
 			var txt = document.createTextNode(sorted[i].title + " - " + sorted[i].body); 
-			var lineBreak = document.createElement("<br />");
+			var lineBreak = document.createElement("br");
 			var txt2 = document.createTextNode("Modified Date: " + sorted[i].modifiedDate + "  Created Date: " + sorted[i].createdDate);
 			note.appendChild(txt);
+			note.appendChild(lineBreak);
+			note.appendChild(txt2);
 			note.appendChild(editButton);
 			element.insertBefore(note,element.firstChild);
 		}
