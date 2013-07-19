@@ -37,9 +37,8 @@ body {
 
 #SubmitButton
 {
-	position: absolute;
-	bottom: 2px;
-	left: 2px;
+	position: relative;
+	top: 6px;
 }
 .eachNote {
 	width: 80%;
