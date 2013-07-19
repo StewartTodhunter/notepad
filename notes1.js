@@ -42,6 +42,7 @@ var notes = (function()
 		var submitButton = document.createElement("input");
 		submitButton.setAttribute("type", "Submit");
 		submitButton.setAttribute("value", "Submit");
+		submitButton.setAttribute("id", "SubmitButton");
 			
 		var cancelButton = document.createElement("input");
 		cancelButton.setAttribute("type", "submit");
