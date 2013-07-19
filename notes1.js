@@ -94,7 +94,7 @@ var notes = (function()
 		//var ModDate = new Date().toString('dd-mm-yyyy h:mm:ss');
 		var ModDate = new Date().toLocaleString();
 		var CreatedDate = new Date().toLocaleString();
-		var txt = document.createTextNode(title + "\\n Modified Date: " + ModDate + "  Created Date: " + CreatedDate);
+		var txt = document.createTextNode(title + "<br>Modified Date: " + ModDate + "  Created Date: " + CreatedDate);
 		var note = document.createElement("div");
 		note.setAttribute("id",title);
 		note.className = "eachNote";
