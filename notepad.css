@@ -81,6 +81,11 @@ body {
 	margin-bottom: 20px;
 }
 
+#titleLabel
+{
+	font-weight: bold;
+}
+
 #noteTitle {
 	font-size: 1em;
 	float: right;
